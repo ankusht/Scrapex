@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Facebook Live Analysis</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="animate.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .logo_name {
+            font-family: 'Shrikhand', cursive;
+        }
+
+        .mid_cont {
+            margin-top: 50px;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            margin-bottom: 60px;
+            height: 600px;
+
+        }
+
+        .about_me {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        .fa {
+            padding: 20px;
+            font-size: 30px;
+            text-align: center;
+            text-decoration: none;
+            margin: 5px 2px;
+        }
+
+        .fb_post:hover {
+            color: #3B5998;
+            background: white;
+            border-color: #3B5998;
+            border-style: solid;
+        }
+
+        .youtube_post:hover {
+            color: #bb0000;
+            background: white;
+            border-color: #bb0000;
+            border-style: solid;
+        }
+
+        .fa-facebook {
+            background: #3B5998;
+            color: white;
+            border-style: solid;
+            border-color: #3B5998;
+
+        }
+
+        .fa-youtube {
+            background: #bb0000;
+            color: white;
+            border-color: #bb0000;
+            border-style: solid;
+        }
+
+        #in_youtube,
+        #in_fb,
+        #instructions {
+            display: none;
+        }
+
+
+
+        /* new */
+
+        .url_yt:link,
+        .url_yt:visited {
+            /* background-color: #f44336; */
+            color: red;
+            /* padding: 10px 15px; */
+            text-align: center;
+            text-decoration: none;
+            /* display: inline-block;
+        border-color: red;
+        border-style : solid ;
+        border-width: 1px; */
+            /* opacity: 0.6; */
+        }
+
+
+        .url_yt:hover,
+        .url_yt:active {
+            /* background-color: white;
+        color:red; */
+            /* opacity: 1; */
+            text-shadow: 0.5px 0.5px 1px rgb(200, 100, 100), 0 0 25px blue, 0 0 5px darkblue;
+        }
+
+        .result_span {
+            color: gray;
+        }
+
+        .result_span:hover {
+            text-shadow: 0.5px 0.5px 1px lightgray, 0 0 25px rgb(30, 30, 30), 0 0 5px rgb(30, 30, 30);
+
+        }
+
+        #in_about {
+            text-align: center;
+            align-content: center;
+
+        }
+
+        .plot_div {
+            width: 100%;
+            /* background-color: gray; */
+            margin-top: 20px;
+        }
+
+        #densityChart,#marksChart {
+            margin-top: 30px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse ">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+                <a class="navbar-brand logo_name " href="#">scrape_X</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Page 1-1</a></li>
+                            <li><a href="#">Page 1-2</a></li>
+                            <li><a href="#">Page 1-3</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Page 2</a></li>
+                    <li><a href="#">Page 3</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- style="background:transparent !important"  -->
+        <div class="well mid_cont jumbotron ">
+            <div id="in_about">
+                <!-- about me tab -->
+                <h1 class="about_me">Facebook Live Video Analysis </h1>
+                <h2 style="color : black;">Here is the analysis for the provided url  </h2>
+                <br>
+                <p>Video url : <a href="" class="url_yt" target="_blank">{{url}}</a></p>
+
+                <p> Total number of comments used for analysis : <span class="result_span"> {{total}}</span></p>
+                <p> Percentage of Positive Comments : <span class="result_span">{{pos_perc}}</span>%</p>
+                <p> Percentage of Negative Comments : <span class="result_span">{{neg_perc}}</span>%</p>
+                <div class="plot_div">
+                    <h2>Analysis Plot</h2>
+                    <canvas id="marksChart"></canvas>
+                </div>
+                 <div class="plot_div">
+                    <h2>Analysis Plot</h2>
+                    <canvas id="densityChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+<script>
+
+        var contactTopPosition = $("#contact_8967").position().top;
+
+        //$("#contact-list-scroller").animate({scrollTop: contactTopPosition});
+
+
+
+    function scrollFun() {
+        document.getElementById("url_field_fb_nonLive").scrollIntoView(true);
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js">
+</script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js">
+</script>
+<script>
+    
+var densityCanvas = document.getElementById("densityChart");
+
+Chart.defaults.global.defaultFontFamily = "Lato";
+Chart.defaults.global.defaultFontSize = 18;
+
+var plot_data = {{scores|safe}};
+var time_data = {{times|safe}};
+var plot_label = [];
+console.log(plot_data);
+console.log(time_data);
+var densityData = {
+  label: 'Density of Sensitivity',
+  data: plot_data
+};
+for (let index = 0; index < plot_data.length; index++) {
+    plot_label[index] = ((time_data[index]/60).toFixed(0)).toString() + ":" + ((time_data[index]%60).toFixed(0)).toString() + "-\n" +
+    ((time_data[index+1]/60).toFixed(0)).toString() + ":" + ((time_data[index+1]%60).toFixed(0)).toString() ;
+    
+}
+var barChart = new Chart(densityCanvas, {
+  type: 'bar',
+  data: {
+    labels: plot_label,
+    datasets: [densityData]
+  }
+
+});
+
+    var a="{{pos_perc|safe}}";
+    var b=    "{{neg_perc|safe}}";
+    var c=    "{{pos_score|safe}}";
+    var d=    "{{neg_score|safe}}";
+ var options_plot = {
+        responsive: false,
+        maintainAspectRatio: true,
+        scale: {
+            ticks: {
+                beginAtZero: true,
+                max: 100
+            }
+        }
+    };
+
+    var marksCanvas = document.getElementById("marksChart");
+    var analysis_data = [a,b,c,d]
+    var marksData = {
+        labels: ["Positive Percent", "Negative Percent", "Positivity", "Negativity"],
+        datasets: [{
+            label: "Analysis",
+            backgroundColor: "rgba(200,0,0,0.1)",
+            color: "rgba(200,0,0,1)",
+            data: analysis_data
+        }],
+
+    };
+
+    var radarChart = new Chart(marksCanvas, {
+        type: 'radar',
+        data: marksData,
+        options: options_plot,
+    });
+    console.log(myRadarChart);
+
+
+</script>
+
+</html>
