@@ -82,7 +82,6 @@ def index(request):
 
 	
 def fb_video(request) :
-    alph = 4
     video_url = "https://www.facebook.com/election.commission.iitk/videos/597396273797338/"
     output0 = fb.main(video_url)
     output = fb_NL.init(video_url)
@@ -101,73 +100,8 @@ def fb_video_nonlive(request) :
     print(output)
     return render(request, "facebook_analysis_nonlive.html", {"total" : output["total_responses"],"url" : video_url, "neg_score" : output["negative_score"],"pos_score" : output["positive_score"],"neg_perc" : output["percentage_neg"],"pos_perc" : output["percentage_pos"]})
 
-
+def team(request) :
+    return render(request,"team.html")
 
 
 # # # # # # # # # # # # # # # # # # # # # # # # 
-
-from myapp.models import Dreamreal
-from django.http import HttpResponse
-
-def crudops(request):
-   #Creating an entry
-   
-   dreamreal = Dreamreal(
-      website = "www.polo.com", mail = "sorex@polo.com", 
-      name = "sorex", phonenumber = "002376970"
-   )
-   
-   dreamreal.save()
-   
-   #Read ALL entries
-   objects = Dreamreal.objects.all()
-   res ='Printing all Dreamreal entries in the DB : <br>'
-   
-   for elt in objects:
-      res += elt.name+"<br>"
-   
-   #Read a specific entry:
-   sorex = Dreamreal.objects.get(name = "sorex")
-   res += 'Printing One entry <br>'
-   res += sorex.name
-   
-   #Delete an entry
-   res += '<br> Deleting an entry <br>'
-   sorex.delete()
-   
-   #Update
-   dreamreal = Dreamreal(
-      website = "www.polo.com", mail = "sorex@polo.com", 
-      name = "sorex", phonenumber = "002376970"
-   )
-   
-   dreamreal.save()
-   res += 'Updating entry<br>'
-   
-   dreamreal = Dreamreal.objects.get(name = 'sorex')
-   dreamreal.name = 'thierry'
-   dreamreal.save()
-   
-   return HttpResponse(res)	
-   
-def datamanipulation(request):
-   res = ''
-   
-   #Filtering data:
-   qs = Dreamreal.objects.filter(name = "paul")
-   res += "Found : %s results<br>"%len(qs)
-   
-   #Ordering results
-   qs = Dreamreal.objects.order_by("name")
-   
-   for elt in qs:
-      res += elt.name + '<br>'
-   
-   return HttpResponse(res)
-'''
-from django.http import HttpResponse
-
-def hello(request, number):
-   text = "<h1>welcome to my app number %s!</h1>"% number
-   return HttpResponse(text)
-   '''
