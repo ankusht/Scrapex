@@ -123,37 +123,37 @@
 
 <body>
 
-    <nav class="navbar navbar-inverse ">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <!-- <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span> -->
-      </button>
-                <a class="navbar-brand logo_name " href="#">scrape_X</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <!-- <ul class="nav navbar-nav"> -->
-                    <!-- <li class="active"><a href="#">Home</a></li> -->
-                    <!-- <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Page 1-1</a></li>
-                            <li><a href="#">Page 1-2</a></li>
-                            <li><a href="#">Page 1-3</a></li>
+        <nav class="navbar navbar-inverse ">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <!-- <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span> -->
+              </button>
+                        <a class="navbar-brand logo_name " href="home">scrape_X</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="home">Home</a></li>
+                            <!-- <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="admin">Page 1-1</a></li>
+                                    <li><a href="#">Page 1-2</a></li>
+                                    <li><a href="#">Page 1-3</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Page 2</a></li>
+                            <li><a href="#">Page 3</a></li>
+                        </ul> -->
+                        <ul  class="nav navbar-nav navbar-right">
+                            <li><a href="team"><span class="glyphicon glyphicon-user"></span> Team</a></li>
+                            <!-- <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
                         </ul>
-                    </li> -->
-                    <!-- <li><a href="#">Page 2</a></li>
-                    <li><a href="#">Page 3</a></li>
-                </ul> -->
-                <!-- <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                </ul> -->
-            </div>
-        </div>
-    </nav>
+                    </div>
+                </div>
+            </nav>
 
     <div class="container">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -167,15 +167,17 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div class="item active">
-                    <img src="header.jpg" alt="Los Angeles" style="width:100%;">
+                    <img src="http://hostimage.000webhostapp.com/code-fun-do/header.jpg" alt="Easily Analyze Videos" style="width:100%;">
+                        
                 </div>
 
                 <div class="item">
-                    <img src="image2.jpg" alt="Chicago" style="width:100%;">
+                    <img src="http://hostimage.000webhostapp.com/code-fun-do/image2.jpg" alt="Easy way to know public opinion" style="width:100%;">
+                        
                 </div>
 
                 <div class="item">
-                    <img src="image1.jpg" alt="New york" style="width:100%;">
+                    <img src="http://hostimage.000webhostapp.com/code-fun-do/image1.jpg" alt="Analysis of live videos" style="width:100%;">
                 </div>
             </div>
 
@@ -208,16 +210,18 @@
                 <h1 class="about_me"> Analysis on Youtube </h1>
                 <h3>Do sentiment analysis of your videos in easy and convient way</h3>
                 <p> Know what people think about you</p>
-                <div id="url_field_yt">
-                    
-                    <form action="" method = "post">
-                        <div class="form-group">
-                            <label for="email">Enter</label>
-                            {{ yt_form }}
-                        </div>
-
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </form>
+                <div class="bg-success" style="padding:20px;margin-top:20px;">
+                        <div id="url_field_yt">
+                                <h3 style="font-weight:bold;"> Enter your video url for analysis on youtube</h3>
+                                <form action="" method = "post">
+                                    <div class="form-group">
+                                        <label for="email">Enter</label>
+                                        {{ yt_form }}
+                                    </div>
+            
+                                    <button type="submit" class="btn btn-default">Submit</button>
+                                </form>
+                            </div>
                 </div>
 
 
@@ -249,29 +253,42 @@
                             But working to improve.</p>
                     </li>
                 </ul>
+                <div class="bg-info" style="padding:20px;">
+                <p >
+                        <span style="font-weight : 800 ;"> Note : </span> Enter videos url of type
+                        <code>path/videos/video_id</code> only .
+                        <br>
+                        Here <code>video_id</code> will be an integer. <br>
+                        <span style="font-weight:600;">Example : </span> <code>https://www.facebook.com/IndiaToday/videos/10156923107527119/</code>
 
-
-                <div id="url_field_fb_nonLive">
-                    <form action="" method = "post">
-                        <div class="form-group">
-                            <label for="email">Enter</label>
-                            {{fb_non_live_form}}
-                        </div>
-
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </form>
+                        
+                    </p>
                 </div>
-
-
-                <div id="url_field_fb_live">
-                    <form action="" method = "post">
-                        <div class="form-group">
-                            <label for="email">Enter</label>
-                            {{fb_live_form}}
-                        </div>
-
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </form>
+                <div class="bg-success" style="padding:20px;margin-top:20px;">
+                        <div id="url_field_fb_nonLive">
+                                <h3 style="font-weight:bold;"> Enter your video url for analysis of normal videos on fb</h3>
+                                <form action="" method = "post">
+                                    <div class="form-group">
+                                        <label for="email">Enter</label>
+                                        {{fb_non_live_form}}
+                                    </div>
+            
+                                    <button type="submit" class="btn btn-default">Submit</button>
+                                </form>
+                            </div>
+            
+            
+                            <div id="url_field_fb_live">
+                                <h3 style="font-weight:bold;"> Enter your video url for analysis of live videos on fb</h3>
+                                <form action="" method = "post">
+                                    <div class="form-group">
+                                        <label for="email">Enter</label>
+                                        {{fb_live_form}}
+                                    </div>
+            
+                                    <button type="submit" class="btn btn-default">Submit</button>
+                                </form>
+                            </div>
                 </div>
 
 
