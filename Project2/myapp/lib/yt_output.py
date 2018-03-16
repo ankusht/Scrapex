@@ -17,7 +17,7 @@ def get_output(sentiments_arr):
 	total_responses = positive_responses + negative_responses
 	percentage_pos = (positive_responses/total_responses)*100
 	percentage_neg = (negative_responses/total_responses)*100
-	output = {'positive_score':positive_score,'negative_score':negative_score,
+	output = {'positive_score':positive_score*200/total_responses,'negative_score':negative_score*200/total_responses,
 			 'positive_responses':positive_responses,'negative_responses':negative_responses,
 			 'percentage_pos':percentage_pos,'percentage_neg':percentage_neg,'total_responses':total_responses}
 
