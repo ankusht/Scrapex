@@ -17,7 +17,8 @@ def jsonToLists(some_json) :
     return 
 
 def getVideoId(video_url) : 
-    video_id = video_url.split("/")[5]
+    tmp = video_url.split("videos/")[1]
+    video_id = tmp.split("/")[0]
     return video_id
 
 def makeRequest(video_id) :
