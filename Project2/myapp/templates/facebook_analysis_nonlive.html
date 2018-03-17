@@ -214,11 +214,11 @@
                 <h1 class="about_me"> Facebook Analysis </h1>
                 <h2 style="color : black;">Here is the analysis for the provided url  </h2>
                 <br>
-                <p>Video url : <a href="" class="url_yt" target="_blank">This is a link</a></p>
+                <p>Video url : <a href="" class="url_yt" target="_blank">{{url}}</a></p>
 
-                <p> Total number of comments used for analysis : <span class="result_span" > 1000</span></p>
-                <p> Percentage of Positive Comments : <span class="result_span" >60</span>%</p>
-                <p> Percentage of Negative Comments : <span class="result_span" >40</span>%</p>
+                <p> Total number of comments used for analysis : <span class="result_span" >{{total}}</span></p>
+                <p> Percentage of Positive Comments : <span class="result_span" >{{pos_perc}}</span>%</p>
+                <p> Percentage of Negative Comments : <span class="result_span" >{{neg_perc}}</span>%</p>
                 <div class="plot_div">
                     <h2>Analysis Plot</h2>
                     <canvas id="marksChart" ></canvas>
@@ -247,8 +247,14 @@ var options_plot = {
     }
 };
 
+var a="{{pos_perc|safe}}";
+    var b=    "{{neg_perc|safe}}";
+    var c=    "{{pos_score|safe}}";
+    var d=    "{{neg_score|safe}}";
+
+
 var marksCanvas = document.getElementById("marksChart");
-var analysis_data = [ 90.6 , 79.4 , 90.5 , 90.7 ]
+var analysis_data = [a,b,c,d]
 var marksData = {
   labels: ["Positive Percent", "Negative Percent", "Positivity", "Negativity"],
   datasets: [{
