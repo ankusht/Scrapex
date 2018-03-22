@@ -22,7 +22,7 @@ def getVideoId(video_url) :
     return video_id
 
 def makeRequest(video_id) :
-    host_url = "https://graph.facebook.com/v2.12/" + video_id + "?fields=created_time,live_status,updated_time,backdated_time,backdated_time_granularity,comments{live_broadcast_timestamp,message},length&access_token=" + perm_token 
+    host_url = "https://graph.facebook.com/v2.12/" + video_id + "?fields=created_time,live_status,updated_time,backdated_time,backdated_time_granularity,comments.limit(1000){live_broadcast_timestamp,message},length&access_token=" + perm_token 
     response = req.get(host_url)
     response_json = json.loads(response.text)
     response_code = response.status_code
