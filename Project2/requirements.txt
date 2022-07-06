@@ -9,7 +9,7 @@ google-auth-httplib2==0.0.3
 google-auth-oauthlib==0.2.0
 google-oauth==1.0.1
 gunicorn==19.7.1
-html5lib==0.9999999
+html5lib==0.999999999
 httplib2==0.10.3
 Jinja2==2.8
 jsonschema==2.6.0
